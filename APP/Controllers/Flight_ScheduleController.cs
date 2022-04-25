@@ -31,7 +31,7 @@ namespace APP.Controllers
         public async Task<IActionResult> Index()
         {
             var result = _mapper.Map<IEnumerable<Flight_ScheduleViewModels>>(
-                await _flight_ScheduleRepository.GetAllFlight_Schedule()); 
+                await _flight_ScheduleRepository.GetAllFlight_Schedule());
             return View(result);
         }
 
@@ -63,6 +63,31 @@ namespace APP.Controllers
             ViewData["airportID"] = new SelectList(_context.airport, "Id", "Name");
             ViewData["flightID"] = new SelectList(_context.flight, "Id", "Name");
             return View();
+        }
+
+        // GET: Flight_Schedule/Permission
+        [HttpGet, ActionName("Permission")]
+        public async Task<IActionResult> Permission(Guid id)
+        {
+            var flight_Schedule = await _flight_ScheduleRepository.GetById(id);
+            if (flight_Schedule == null)
+            {
+                return NotFound();
+            }
+
+            flight_Schedule.status = true;
+
+            await _flight_ScheduleRepository.Update(flight_Schedule);
+
+            return RedirectToAction("Index");
+        }
+        // GET: Flight_Schedule/Create
+        public async Task<IActionResult> Chegada()
+        {
+            var result = _mapper.Map<IEnumerable<Flight_ScheduleViewModels>>(
+            await _flight_ScheduleRepository.GetAllFlight_Schedule());
+            return PartialView("Chegada", new { result, to_from = 1 });
+
         }
 
         // POST: Flight_Schedule/Create

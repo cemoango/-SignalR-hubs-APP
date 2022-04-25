@@ -8,25 +8,18 @@
 <h1>Index</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="btn-link">Create New</a>
 </p>
 
-<input type="checkbox" checked data-style="btn-group-justified">
-
-<span class="switcher switcher-1">
-   <input type="checkbox" id="switcher-1">
-   <label for="switcher-1"></label>
-</span>
-<span class="switcher switcher-2">
-   <input type="checkbox" id="switcher-2">
-   <label for="switcher-2"></label>
-</span>
 
 <table class="table table-striped">
     <thead>
         <tr>
             <th>
                 Horario
+            </th>
+            <th>
+                Partida/Chegada
             </th>
             <th>
                 Voos
@@ -47,6 +40,9 @@
                 @Html.DisplayFor(modelItem => item.time)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.to_fromStatus)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.flight) | 
                 @Html.DisplayFor(modelItem => item.airline)
             </td>
@@ -57,8 +53,8 @@
                 @Html.DisplayFor(modelItem => item.status)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Permission</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-action="Permission" class="btn-lg btn-danger " asp-route-id="@item.Id">Permission</a> |
+                <a asp-action="Delete" class="btn-lg btn-dark" asp-route-id="@item.Id">Delete</a>
             </td>
         </tr>
 }
@@ -98,11 +94,12 @@ function BindFlight_ScheduleToGrid(flight_Schedule) {
         console.log('${item.name}');
 		tr = $('<tr scope="row" id = "'+item.id+'">');
 		tr.append('<td>'+item.time+'</td>');
+		tr.append('<td>'+item.to_fromStatus+'</td>');
 		tr.append('<td>'+item.flight+' - '+item.airline+'</td>');
 		tr.append('<td>'+item.airport+'</td>');
 		tr.append('<td>'+item.status+'</td>');
-        tr.append('<td> <a href="/Flight_Schedule/Change/'+item.id+'">Permission | </a>'+
-        '<a href="/Flight_Schedule/Delete/'+item.id+'">Delete</a></td>')
+        tr.append('<td> <a class="btn-danger" href="/Flight_Schedule/Permission/'+item.id+'">Permission | </a>'+
+        '<a  class="btn-dark" href="/Flight_Schedule/Delete/'+item.id+'">Delete</a></td>')
         tr.append('<tr/>');
 		$('#tblFlight_Schedule').append(tr);
                 
@@ -110,7 +107,7 @@ function BindFlight_ScheduleToGrid(flight_Schedule) {
         {
               var square = document.getElementById(item.id);
               square.style.color = "white";
-              square.style.backgroundColor = "#8B0000";        
+              square.style.backgroundColor = "#339933";        
         }
 	});
 }

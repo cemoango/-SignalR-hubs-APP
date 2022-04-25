@@ -15,10 +15,6 @@ namespace APP.AutoMapper
           .ForMember(d => d.flight, o => o.MapFrom(s => s.flightOBJ.cod))
           .ForMember(d => d.airport, o => o.MapFrom(s => s.airportOBJ.Name))
           .ReverseMap();
-
-            //CreateMap<Flight, FlightViewModels>().ReverseMap();
-            //CreateMap<Airline, AirlineViewModels>().ReverseMap();
-            //CreateMap<Airport, AirportViewModels>().ReverseMap();
         }
     }
 }

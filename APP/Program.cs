@@ -9,15 +9,6 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-//builder.Services.AddScoped<Func<APPDBContext>>((ctx) => {
-// //   var options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
-// var options = new DbContextOptionsBuilder<APPDBContext>()
-//            .UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
-//            .Options;
-
-//    return () => (APPDBContext)Activator.CreateInstance(typeof(APPDBContext), options);
-//}       
-//);
 builder.Services.AddDbContextFactory<APPDBContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 

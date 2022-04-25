@@ -14,9 +14,6 @@ namespace APP.Configurations
         {
             services.AddSingleton<APPDBContext>();
             services.AddSingleton<IFlight_ScheduleRepository, Flight_ScheduleRepository>();
-            //services.AddScoped<IFlightRepository, FlightRepository>();
-            //services.AddScoped<IAirportRepository, AirportRepository>();
-            //services.AddScoped<IAirlineRepository, AirlineRepository>();
             return services;
         }
         public static IServiceCollection ResolveDependenciesSIJ(this IServiceCollection services)

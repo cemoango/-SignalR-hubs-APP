@@ -44,7 +44,8 @@ namespace APP.Data.Repository
                     Id =    flight_Schedule.Id,
                     time = flight_Schedule.time,
                     status = flight_Schedule.status.ToString(),
-                    
+                    to_fromStatus= flight_Schedule.to_fromStatus
+
                 });
             }
             return flight_ScheduleViewModels;
